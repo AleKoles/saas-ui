@@ -1,0 +1,193 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+@import "tailwindcss";
+
+@theme {
+  /* ── Neutral scale (same across all themes) ── */
+  --color-neutral-0:   #ffffff;
+  --color-neutral-50:  #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+
+  /*
+    Semantic state colours are defined per-theme in src/themes/*.css
+    Defaults below are violet theme fallbacks — always overridden
+    when a theme file is loaded.
+  */
+  --color-success-50:  #ecfdf5; --color-success-100: #d1fae5;
+  --color-success-500: #10b981; --color-success-600: #059669; --color-success-700: #047857;
+
+  --color-danger-50:   #fff1f2; --color-danger-100:  #ffe4e6;
+  --color-danger-500:  #f43f5e; --color-danger-600:  #e11d48; --color-danger-700:  #be123c;
+
+  --color-warning-50:  #fffbeb; --color-warning-100: #fef9c3;
+  --color-warning-500: #f59e0b; --color-warning-600: #d97706; --color-warning-700: #b45309;
+
+  --color-info-50:     #f0f9ff; --color-info-100:    #e0f2fe;
+  --color-info-500:    #38bdf8; --color-info-600:    #0284c7; --color-info-700:    #0369a1;
+
+  /* ── Radius ── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* ── Typography ── */
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+}
+
+/*
+  ── Semantic custom properties ──
+  These are what components actually use — never raw colours.
+  Each theme file overrides only these variables.
+  Default here is Violet so the app works with no theme file imported.
+*/
+:root {
+  /* Primary brand — overridden per theme */
+  --color-primary:          #7c3aed;
+  --color-primary-hover:    #6d28d9;
+  --color-primary-subtle:   #f3f0ff;
+  --color-primary-text:     #5b21b6;
+
+  /* Surface — overridden per theme */
+  --color-surface:          #0f172a;
+  --color-surface-raised:   #1e293b;
+  --color-surface-border:   #7c3aed44;
+
+  /* Text on surface */
+  --color-on-surface:       #f8fafc;
+  --color-on-surface-muted: #94a3b8;
+
+  /* Page background — overridden per theme */
+  --color-bg-page:          #f8fafc;
+  --color-bg-subtle:        #f1f5f9;
+
+  /* Borders */
+  --color-border:           #e2e8f0;
+  --color-border-strong:    #cbd5e1;
+  --color-border-focus:     #7c3aed;
+
+  /* Text hierarchy */
+  --color-text-primary:     #0f172a;
+  --color-text-secondary:   #475569;
+  --color-text-tertiary:    #94a3b8;
+  --color-text-inverse:     #ffffff;
+
+  /* Z-index scale */
+  --z-dropdown: 100;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-toast:    500;
+}
+
+/* ── Base resets ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  background: var(--color-bg-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Focus ring — keyboard only ── */
+:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/*
+  CSS custom properties mirror the token file so Pencil.dev
+  and any plain-CSS consumers can reference the same values.
+  Update tokens/index.ts → update here → both stay in sync.
+*/
+:root {
+  /* Brand */
+  --color-primary:       #6366f1;
+  --color-primary-hover: #4f46e5;
+  --color-primary-focus: #e0e7ff;
+
+  /* Semantic text */
+  --text-primary:   #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary:  #94a3b8;
+  --text-inverse:   #ffffff;
+
+  /* Semantic backgrounds */
+  --bg-page:    #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-subtle:  #f1f5f9;
+
+  /* Borders */
+  --border-default: #e2e8f0;
+  --border-strong:  #cbd5e1;
+  --border-focus:   #6366f1;
+
+  /* Semantic states */
+  --color-danger:  #ef4444;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-info:    #3b82f6;
+
+  /* Radius */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* Z-index */
+  --z-dropdown: 100;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-toast:    500;
+}
+
+/* Base resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Focus ring — keyboard navigation only.
+   :focus-visible is the browser-native way to show focus rings
+   only when the user is navigating by keyboard (Tab, arrow keys).
+   Mouse clicks and touch taps never trigger it.
+   Never use :focus alone — it fires on every click. */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Explicitly suppress the default browser outline on mouse/touch
+   for browsers that don't fully support :focus-visible yet */
+:focus:not(:focus-visible) {
+  outline: none;
+}
