@@ -73,6 +73,12 @@
   --color-on-surface:       #f8fafc;
   --color-on-surface-muted: #94a3b8;
 
+  /* On-surface semantic colours — overridden per theme */
+  --color-success-on-surface: #6ee7b7;
+  --color-danger-on-surface:  #fca5a5;
+  --color-warning-on-surface: #fcd34d;
+  --color-info-on-surface:    #7dd3fc;
+
   /* Page background — overridden per theme */
   --color-bg-page:          #f8fafc;
   --color-bg-subtle:        #f1f5f9;
@@ -95,6 +101,30 @@
   --z-toast:    500;
 }
 
+/* ── Skeleton shimmer ── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-raised) 30%,
+    var(--color-neutral-700)    50%,
+    var(--color-surface-raised) 70%
+  );
+  background-size: 300% 100%;
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+    background: var(--color-neutral-600);
+  }
+}
+
 /* ── Base resets ── */
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -113,80 +143,3 @@ body {
   outline-offset: 2px;
 }
 :focus:not(:focus-visible) { outline: none; }
-
-/*
-  CSS custom properties mirror the token file so Pencil.dev
-  and any plain-CSS consumers can reference the same values.
-  Update tokens/index.ts → update here → both stay in sync.
-*/
-:root {
-  /* Brand */
-  --color-primary:       #6366f1;
-  --color-primary-hover: #4f46e5;
-  --color-primary-focus: #e0e7ff;
-
-  /* Semantic text */
-  --text-primary:   #0f172a;
-  --text-secondary: #475569;
-  --text-tertiary:  #94a3b8;
-  --text-inverse:   #ffffff;
-
-  /* Semantic backgrounds */
-  --bg-page:    #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-subtle:  #f1f5f9;
-
-  /* Borders */
-  --border-default: #e2e8f0;
-  --border-strong:  #cbd5e1;
-  --border-focus:   #6366f1;
-
-  /* Semantic states */
-  --color-danger:  #ef4444;
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
-  --color-info:    #3b82f6;
-
-  /* Radius */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   12px;
-  --radius-xl:   16px;
-  --radius-full: 9999px;
-
-  /* Z-index */
-  --z-dropdown: 100;
-  --z-overlay:  300;
-  --z-modal:    400;
-  --z-toast:    500;
-}
-
-/* Base resets */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Inter, system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--text-primary);
-  background: var(--bg-page);
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Focus ring — keyboard navigation only.
-   :focus-visible is the browser-native way to show focus rings
-   only when the user is navigating by keyboard (Tab, arrow keys).
-   Mouse clicks and touch taps never trigger it.
-   Never use :focus alone — it fires on every click. */
-:focus-visible {
-  outline: 2px solid var(--border-focus);
-  outline-offset: 2px;
-}
-
-/* Explicitly suppress the default browser outline on mouse/touch
-   for browsers that don't fully support :focus-visible yet */
-:focus:not(:focus-visible) {
-  outline: none;
-}

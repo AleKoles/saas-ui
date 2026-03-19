@@ -79,7 +79,6 @@ export function Badge({
   size = "md",
   dot = false,
   label,
-  ariaLabel,
   className = "",
   ...props
 }: BadgeProps) {
@@ -88,7 +87,6 @@ export function Badge({
 
   return (
     <span
-      aria-label={ariaLabel}
       className={[
         // Base styles
         "inline-flex items-center font-medium rounded-full leading-none",
