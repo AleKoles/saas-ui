@@ -1,73 +1,103 @@
-# React + TypeScript + Vite
+# saas-ui
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Accessible SaaS dashboard components — React · TypeScript · Tailwind CSS
 
-Currently, two official plugins are available:
+[![WCAG AA](https://img.shields.io/badge/WCAG-AA%20Compliant-22c55e)](https://www.w3.org/WAI/WCAG2AA-Conformance)
+[![License: MIT](https://img.shields.io/badge/License-MIT-6366f1.svg)](https://opensource.org/licenses/MIT)
+[![Status: WIP](https://img.shields.io/badge/Status-Work%20in%20Progress-f59e0b)]()
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A focused, opinionated component library built for SaaS product teams. Every component is designed accessibility-first with WCAG AA compliance verified in Storybook, and ships with three built-in themes.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Live Storybook
 
-## Expanding the ESLint configuration
+> 🔗 Coming soon — deploying to Vercel
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Figma Design System
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+> 🎨 [View in Figma](https://www.figma.com/design/So0CS02VQjOtc3tEmZrOnt/saas-ui-%E2%80%94-Design-System?node-id=1-2&t=jTd6PEWvxpROwmAe-1) — colour variables, component designs, and side-by-side design/code comparisons for every component.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Themes
+
+Three complete themes, each with its own personality and full semantic colour palette. Switch live in Storybook.
+
+| Theme | Style | Primary |
+|---|---|---|
+| 🟣 Violet | Light page · dark cards | `#7c3aed` |
+| 🟡 Amber | Full dark | `#d97706` |
+| 🟢 Teal | Full light | `#0d9488` |
+
+```ts
+// Use only what you need
+import "@yourname/ui/themes/violet.css"
+import "@yourname/ui/themes/amber.css"
+import "@yourname/ui/themes/teal.css"
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Components
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Component | Status | a11y |
+|---|---|---|
+| Badge | ✅ Done | WCAG AA |
+| StatCard | 🚧 In progress | — |
+| DataTable | ⬜ Planned | — |
+| Modal | ⬜ Planned | — |
+| Toast | ⬜ Planned | — |
+| Skeleton | ⬜ Planned | — |
+| Empty State | ⬜ Planned | — |
+| Filter / Search | ⬜ Planned | — |
+| Command Menu | ⬜ Planned | — |
+
+---
+
+## Quick start
+
+```bash
+npm install @yourname/ui
 ```
+
+```tsx
+import "@yourname/ui/themes/violet.css"
+import { Badge } from "@yourname/ui"
+
+<Badge label="Active" color="success" variant="subtle" dot />
+```
+
+---
+
+## Design system
+
+Components are built on a token architecture — every colour, spacing value, and radius references a CSS custom property. Swap the theme file, everything re-themes automatically.
+
+```
+src/
+├── themes/
+│   ├── violet.css    — Violet theme tokens
+│   ├── amber.css     — Amber theme tokens
+│   └── teal.css      — Teal theme tokens
+├── tokens/
+│   └── index.ts      — Neutral scale, spacing, radius, typography
+└── components/
+    └── Badge/
+```
+
+---
+
+## Development
+
+```bash
+npm install
+npm run storybook     # Component workshop at localhost:6006
+npm run build         # Bundle for publishing
+```
+
+---
+
+## License
+
+MIT — free to use in personal and commercial projects.
