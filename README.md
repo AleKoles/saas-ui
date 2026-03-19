@@ -44,7 +44,7 @@ import "@yourname/ui/themes/teal.css"
 | Component | Status | a11y |
 |---|---|---|
 | Badge | ✅ Done | WCAG AA |
-| StatCard | 🚧 In progress | — |
+| StatCard | ✅ Done | WCAG AA |
 | DataTable | ⬜ Planned | — |
 | Modal | ⬜ Planned | — |
 | Toast | ⬜ Planned | — |
