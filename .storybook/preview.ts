@@ -1,20 +1,51 @@
-import type { Preview } from '@storybook/react-vite'
+import type { Preview } from "@storybook/react-vite";
+import React from "react";
+import "../src/styles.css";
+import "../src/themes/violet.css";
+import "../src/themes/amber.css";
+import "../src/themes/teal.css";
 
 const preview: Preview = {
-  parameters: {
-    controls: {
-      matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+  globalTypes: {
+    theme: {
+      description: "Global theme",
+      toolbar: {
+        title: "Theme",
+        icon: "paintbrush",
+        items: [
+          { value: "violet", title: "Violet", right: "🟣" },
+          { value: "amber",  title: "Amber",  right: "🟡" },
+          { value: "teal",   title: "Teal",   right: "🟢" },
+        ],
+        dynamicTitle: true,
       },
     },
+  },
 
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo'
-    }
+  initialGlobals: {
+    theme: "violet",
+  },
+
+  decorators: [
+    (Story, context) => {
+      document.documentElement.setAttribute(
+        "data-theme",
+        context.globals.theme ?? "violet"
+      );
+      return React.createElement(Story);
+    },
+  ],
+
+  parameters: {
+    a11y: { test: "todo" },
+    backgrounds: { disable: true },
+    layout: "centered",
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
+    },
   },
 };
 

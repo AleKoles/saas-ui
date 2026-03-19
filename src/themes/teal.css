@@ -49,4 +49,12 @@
   --color-info-700:         #4338ca;
   --color-info-100:         #e0e7ff;
   --color-info-50:          #eef2ff;
+
+  /* Neutrals — cool gray scale for light teal theme */
+  --color-neutral-0:        #ffffff;
+  --color-neutral-100:      #f3f4f6;
+  --color-neutral-200:      #e5e7eb;
+  --color-neutral-400:      #9ca3af;
+  --color-neutral-600:      #4b5563;
+  --color-neutral-900:      #111827;
 }
