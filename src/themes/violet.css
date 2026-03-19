@@ -25,24 +25,28 @@
   --color-border-strong:    #cbd5e1;
   --color-border-focus:     #7c3aed;
 
+  --color-success-on-surface: #6ee7b7;
   --color-success-500:      #10b981;
   --color-success-600:      #059669;
   --color-success-700:      #047857;
   --color-success-100:      #d1fae5;
   --color-success-50:       #ecfdf5;
 
+  --color-danger-on-surface:  #fca5a5;
   --color-danger-500:       #f43f5e;
   --color-danger-600:       #e11d48;
   --color-danger-700:       #be123c;
   --color-danger-100:       #ffe4e6;
   --color-danger-50:        #fff1f2;
 
+  --color-warning-on-surface: #fcd34d;
   --color-warning-500:      #f59e0b;
   --color-warning-600:      #d97706;
   --color-warning-700:      #b45309;
   --color-warning-100:      #fef9c3;
   --color-warning-50:       #fffbeb;
 
+  --color-info-on-surface:    #7dd3fc;
   --color-info-500:         #38bdf8;
   --color-info-600:         #0284c7;
   --color-info-700:         #0369a1;
