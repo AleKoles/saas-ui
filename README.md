@@ -45,7 +45,7 @@ import "@yourname/ui/themes/teal.css"
 |---|---|---|
 | Badge | ✅ Done | WCAG AA |
 | StatCard | ✅ Done | WCAG AA |
-| DataTable | ⬜ Planned | — |
+| DataTable | ✅ Done | WCAG AA |
 | Modal | ⬜ Planned | — |
 | Toast | ⬜ Planned | — |
 | Skeleton | ⬜ Planned | — |
