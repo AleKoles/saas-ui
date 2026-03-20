@@ -1,6 +1,9 @@
 # saas-ui
 
-> Accessible SaaS dashboard components — React · TypeScript · Tailwind CSS
+**Accessible UI primitives for data-heavy SaaS interfaces**  
+React · TypeScript · Tailwind CSS  
+
+Built to explore how accessible design systems can scale in real SaaS products.
 
 [![WCAG AA](https://img.shields.io/badge/WCAG-AA%20Compliant-22c55e)](https://www.w3.org/WAI/WCAG2AA-Conformance)
 [![License: MIT](https://img.shields.io/badge/License-MIT-6366f1.svg)](https://opensource.org/licenses/MIT)
@@ -10,9 +13,25 @@ A focused, opinionated component library built for SaaS product teams. Every com
 
 ---
 
+## Overview
+
+A component system built for SaaS product teams, focused on accessibility, consistency, and real-world interface patterns.
+
+Most UI libraries cover generic elements but fall short on accessibility and usability in data-heavy interfaces. This project focuses on high-impact components like tables, metrics, and system states — designed and built with accessibility as a first-class constraint.
+In practice, this leads to inconsistent implementations, accessibility gaps, and increased complexity in production systems.
+
+Every component is:
+- Designed in Figma  
+- Implemented with pixel precision in code  
+- Validated against WCAG AA in Storybook 
+
+Instead of building a large generic library, this system focuses on a small set of high-impact components commonly used in SaaS dashboards.
+
+---
+
 ## Live Storybook
 
-> 🔗 [Vercel](https://saas-ui-delta.vercel.app)
+> 🔗 [Vercel](https://saas-fu6y8zyag-alekoles-projects.vercel.app/)
 
 ## Figma Design System
 
@@ -22,7 +41,8 @@ A focused, opinionated component library built for SaaS product teams. Every com
 
 ## Themes
 
-Three complete themes, each with its own personality and full semantic colour palette. Switch live in Storybook.
+Three complete, token-based themes with full semantic color systems.  
+Switch live in Storybook.
 
 | Theme | Style | Primary |
 |---|---|---|
@@ -31,9 +51,9 @@ Three complete themes, each with its own personality and full semantic colour pa
 | 🟢 Teal | Full light | `#0d9488` |
 ```ts
 // Use only what you need
-import "@yourname/ui/themes/violet.css"
-import "@yourname/ui/themes/amber.css"
-import "@yourname/ui/themes/teal.css"
+import "@alekoles/saas-ui/themes/violet.css"
+import "@alekoles/saas-ui/themes/amber.css"
+import "@alekoles/saas-ui/themes/teal.css"
 ```
 
 ---
@@ -56,7 +76,7 @@ import "@yourname/ui/themes/teal.css"
 
 ## Design → Code
 
-Every component is designed in Figma first, then matched pixel-perfectly in Storybook.
+Every component is designed in Figma first, then matched in Storybook.
 
 ### Badge
 
@@ -80,11 +100,11 @@ Every component is designed in Figma first, then matched pixel-perfectly in Stor
 
 ## Quick start
 ```bash
-npm install @yourname/ui
+npm install @alekoles/saas-ui
 ```
 ```tsx
-import "@yourname/ui/themes/violet.css"
-import { Badge } from "@yourname/ui"
+import "@alekoles/saas-ui/themes/violet.css"
+import { Badge } from "@alekoles/saas-ui"
 
 <Badge label="Active" color="success" variant="subtle" dot />
 ```
@@ -93,7 +113,7 @@ import { Badge } from "@yourname/ui"
 
 ## Design system
 
-Components are built on a token architecture — every colour, spacing value, and radius references a CSS custom property. Swap the theme file, everything re-themes automatically.
+Components are built on a token architecture — every colour, spacing value, and radius references a CSS custom property. Swap the theme file, and everything re-themes automatically.
 ```
 src/
 ├── themes/
