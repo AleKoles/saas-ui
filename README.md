@@ -12,7 +12,7 @@ A focused, opinionated component library built for SaaS product teams. Every com
 
 ## Live Storybook
 
-> 🔗 Coming soon — deploying to Vercel
+> 🔗 [Vercel](https://saas-fu6y8zyag-alekoles-projects.vercel.app/)
 
 ## Figma Design System
 
