@@ -29,7 +29,6 @@ Three complete themes, each with its own personality and full semantic colour pa
 | 🟣 Violet | Light page · dark cards | `#7c3aed` |
 | 🟡 Amber | Full dark | `#d97706` |
 | 🟢 Teal | Full light | `#0d9488` |
-
 ```ts
 // Use only what you need
 import "@yourname/ui/themes/violet.css"
@@ -55,12 +54,34 @@ import "@yourname/ui/themes/teal.css"
 
 ---
 
-## Quick start
+## Design → Code
 
+Every component is designed in Figma first, then matched pixel-perfectly in Storybook.
+
+### Badge
+
+| Figma design | Storybook implementation |
+|---|---|
+| ![Badge design](docs/design/Badges_Violet.png) | ![Badge implementation](docs/impl/Badges_Story_Violet.png) |
+
+### StatCard
+
+| Figma design | Storybook implementation |
+|---|---|
+| ![StatCard design](docs/design/StatCards_Violet.png) | ![StatCard implementation](docs/impl/StatCards_Story_Violet.png) |
+
+### DataTable
+
+| Figma design | Storybook implementation |
+|---|---|
+| ![DataTable design](docs/design/DataTable-Violet.png) | ![DataTable implementation](docs/impl/DataTable_Story_Violet.png) |
+
+---
+
+## Quick start
 ```bash
 npm install @yourname/ui
 ```
-
 ```tsx
 import "@yourname/ui/themes/violet.css"
 import { Badge } from "@yourname/ui"
@@ -73,7 +94,6 @@ import { Badge } from "@yourname/ui"
 ## Design system
 
 Components are built on a token architecture — every colour, spacing value, and radius references a CSS custom property. Swap the theme file, everything re-themes automatically.
-
 ```
 src/
 ├── themes/
@@ -83,13 +103,14 @@ src/
 ├── tokens/
 │   └── index.ts      — Neutral scale, spacing, radius, typography
 └── components/
-    └── Badge/
+    ├── Badge/
+    ├── StatCard/
+    └── DataTable/
 ```
 
 ---
 
 ## Development
-
 ```bash
 npm install
 npm run storybook     # Component workshop at localhost:6006
