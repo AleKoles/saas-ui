@@ -74,7 +74,7 @@ Every component is designed in Figma first, then matched pixel-perfectly in Stor
 
 | Figma design | Storybook implementation |
 |---|---|
-| ![DataTable design](docs/design/DataTable-Violet.png) | ![DataTable implementation](docs/impl/DataTable_Story_Violet.png) |
+| ![DataTable design](docs/design/DataTable_Violet.png) | ![DataTable implementation](docs/impl/DataTable_Story_Violet.png) |
 
 ---
 
