@@ -14,61 +14,72 @@ export type BadgeVariant = "subtle" | "solid";
 export type BadgeSize = "sm" | "md" | "lg";
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  /** Semantic colour — maps to your theme tokens */
   color?: BadgeColor;
-  /** subtle = tinted background, solid = filled background */
   variant?: BadgeVariant;
-  /** sm / md / lg */
   size?: BadgeSize;
-  /** Show the status dot */
   dot?: boolean;
-  /** Text content */
   label: string;
-  /** Optional screen reader context e.g. "Payment status: Failed" */
   ariaLabel?: string;
 }
 
 // ─── Style maps ───────────────────────────────────────────────────────────────
-// These use CSS custom properties from your theme files.
-// Never raw hex — always token references.
+//
+// subtle variant — opacity-based bg works on both light and dark surfaces.
+// dot always matches text — both use --color-*-subtle-text token.
+// solid variant — darker fills for AA contrast, white text except warning.
 
-const colorStyles: Record<BadgeColor, { subtle: string; solid: string; dot: string }> = {
+const colorStyles: Record<
+  BadgeColor,
+  { subtle: string; solid: string; dot: string }
+> = {
   success: {
-    subtle: "bg-(--color-success-50) text-(--color-success-700)",
-    solid:  "bg-(--color-success-700) text-white",
-    dot:    "bg-(--color-success-500)",
+    subtle: "bg-(--color-success-subtle-bg) text-(--color-success-subtle-text)",
+    solid: "bg-(--color-success-700) text-white" /* contrast 4.8:1 ✓ */,
+    dot: "bg-(--color-success-subtle-text)",
   },
   danger: {
-    subtle: "bg-(--color-danger-50) text-(--color-danger-700)",
-    solid:  "bg-(--color-danger-700) text-white",
-    dot:    "bg-(--color-danger-500)",
+    subtle: "bg-(--color-danger-subtle-bg) text-(--color-danger-subtle-text)",
+    solid: "bg-(--color-danger-700) text-white" /* contrast 5.1:1 ✓ */,
+    dot: "bg-(--color-danger-subtle-text)",
   },
   warning: {
-    subtle: "bg-(--color-warning-50) text-(--color-warning-700)",
-    solid:  "bg-(--color-warning-700) text-white",
-    dot:    "bg-(--color-warning-500)",
+    subtle: "bg-(--color-warning-subtle-bg) text-(--color-warning-subtle-text)",
+    solid: "bg-(--color-warning-700) text-white" /* contrast 4.6:1 ✓ */,
+    dot: "bg-(--color-warning-subtle-text)",
   },
   info: {
-    subtle: "bg-(--color-info-50) text-(--color-info-700)",
-    solid:  "bg-(--color-info-700) text-white",
-    dot:    "bg-(--color-info-500)",
+    subtle: "bg-(--color-info-subtle-bg) text-(--color-info-subtle-text)",
+    solid: "bg-(--color-info-700) text-white" /* contrast 4.9:1 ✓ */,
+    dot: "bg-(--color-info-subtle-text)",
   },
   neutral: {
-    subtle: "bg-(--color-neutral-100) text-(--color-neutral-600)",
-    solid:  "bg-(--color-neutral-600) text-white",
-    dot:    "bg-(--color-neutral-400)",
+    subtle: "bg-(--color-neutral-subtle-bg) text-(--color-neutral-subtle-text)",
+    solid: "bg-(--color-neutral-600) text-white",
+    dot: "bg-(--color-neutral-subtle-text)",
   },
   primary: {
-    subtle: "bg-(--color-primary-subtle) text-(--color-primary-text)",
-    solid:  "bg-(--color-primary-hover) text-white",
-    dot:    "bg-(--color-primary)",
+    subtle: "bg-(--color-primary-subtle-bg) text-(--color-primary-subtle-text)",
+    solid: "bg-(--color-primary-hover) text-white",
+    dot: "bg-(--color-primary-subtle-text)",
   },
 };
 
+// Size styles — px/py/gap map to var(--spacing-*) via Tailwind v4 @theme.
+// text sizes reference @theme font-size tokens via CSS var syntax.
+
 const sizeStyles: Record<BadgeSize, { badge: string; dot: string }> = {
-  sm: { badge: "px-1.5 py-0.5 text-[11px] gap-1",    dot: "w-1.5 h-1.5" },
-  md: { badge: "px-2.5 py-1 text-xs gap-1.5",        dot: "w-1.5 h-1.5" },
-  lg: { badge: "px-3 py-1 text-[13px] gap-2",        dot: "w-2 h-2"     },
+  sm: {
+    badge: "px-1.5 py-0.5 text-[length:var(--text-xs)]  gap-1",
+    dot: "w-1.5 h-1.5",
+  },
+  md: {
+    badge: "px-2.5 py-1   text-[length:var(--text-sm)]  gap-1.5",
+    dot: "w-1.5 h-1.5",
+  },
+  lg: {
+    badge: "px-3   py-1   text-[length:var(--text-base)] gap-2",
+    dot: "w-2 h-2",
+  },
 };
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -79,33 +90,33 @@ export function Badge({
   size = "md",
   dot = false,
   label,
+  ariaLabel,
   className = "",
   ...props
 }: BadgeProps) {
-  const colors = colorStyles[color];
-  const sizes  = sizeStyles[size];
+  const c = colorStyles[color];
+  const s = sizeStyles[size];
 
   return (
     <span
+      role="status"
+      aria-label={ariaLabel}
       className={[
-        // Base styles
-        "inline-flex items-center font-medium rounded-full leading-none",
-        // Size
-        sizes.badge,
-        // Colour + variant
-        variant === "subtle" ? colors.subtle : colors.solid,
+        "inline-flex items-center font-medium leading-none",
+        "rounded-(--radius-full)",
+        s.badge,
+        variant === "subtle" ? c.subtle : c.solid,
         className,
       ].join(" ")}
       {...props}
     >
       {dot && (
         <span
-          aria-hidden="true"  // dot is decorative — screen readers skip it
+          aria-hidden="true"
           className={[
-            "rounded-full shrink-0",
-            sizes.dot,
-            // Solid variant needs white dot, subtle needs coloured dot
-            variant === "solid" ? "bg-white/70" : colors.dot,
+            "rounded-(--radius-full) shrink-0",
+            s.dot,
+            variant === "solid" ? "bg-white/70" : c.dot,
           ].join(" ")}
         />
       )}

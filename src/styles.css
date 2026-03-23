@@ -4,9 +4,9 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Neutral scale (same across all themes) ── */
-  --color-neutral-0:   #ffffff;
-  --color-neutral-50:  #f8fafc;
+  /* ── Neutral scale ── */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f8fafc;
   --color-neutral-100: #f1f5f9;
   --color-neutral-200: #e2e8f0;
   --color-neutral-300: #cbd5e1;
@@ -17,29 +17,57 @@
   --color-neutral-800: #1e293b;
   --color-neutral-900: #0f172a;
 
-  /*
-    Semantic state colours are defined per-theme in src/themes/*.css
-    Defaults below are violet theme fallbacks — always overridden
-    when a theme file is loaded.
-  */
-  --color-success-50:  #ecfdf5; --color-success-100: #d1fae5;
-  --color-success-500: #10b981; --color-success-600: #059669; --color-success-700: #047857;
+  /* ── Semantic state colours (violet fallbacks — overridden per theme) ── */
+  --color-success-50: #ecfdf5;
+  --color-success-100: #d1fae5;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+  --color-success-700: #047857;
 
-  --color-danger-50:   #fff1f2; --color-danger-100:  #ffe4e6;
-  --color-danger-500:  #f43f5e; --color-danger-600:  #e11d48; --color-danger-700:  #be123c;
+  --color-danger-50: #fff1f2;
+  --color-danger-100: #ffe4e6;
+  --color-danger-500: #f43f5e;
+  --color-danger-600: #e11d48;
+  --color-danger-700: #be123c;
 
-  --color-warning-50:  #fffbeb; --color-warning-100: #fef9c3;
-  --color-warning-500: #f59e0b; --color-warning-600: #d97706; --color-warning-700: #b45309;
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef9c3;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
 
-  --color-info-50:     #f0f9ff; --color-info-100:    #e0f2fe;
-  --color-info-500:    #38bdf8; --color-info-600:    #0284c7; --color-info-700:    #0369a1;
+  --color-info-50: #f0f9ff;
+  --color-info-100: #e0f2fe;
+  --color-info-500: #38bdf8;
+  --color-info-600: #0284c7;
+  --color-info-700: #0369a1;
 
   /* ── Radius ── */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   12px;
-  --radius-xl:   16px;
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-full: 9999px;
+
+  /* ── Spacing — mirrors tokens/index.ts spacing map ── */
+  /* Components use var(--spacing-{n}) or Tailwind's p-{n} / gap-{n} / m-{n} */
+  --spacing-0\.5: 2px;
+  --spacing-1: 4px;
+  --spacing-1\.5: 6px;
+  --spacing-2: 8px;
+  --spacing-2\.5: 10px;
+  --spacing-3: 12px;
+  --spacing-3\.5: 14px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
 
   /* ── Typography ── */
   --font-sans: Inter, system-ui, sans-serif;
@@ -47,71 +75,93 @@
 
   /* ── Shadows ── */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  --shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
 }
 
 /*
   ── Semantic custom properties ──
-  These are what components actually use — never raw colours.
-  Each theme file overrides only these variables.
-  Default here is Violet so the app works with no theme file imported.
+  What components actually reference — never raw colours.
+  Each theme file overrides only these. Default = Violet.
 */
 :root {
-  /* Primary brand — overridden per theme */
-  --color-primary:          #7c3aed;
-  --color-primary-hover:    #6d28d9;
-  --color-primary-subtle:   #f3f0ff;
-  --color-primary-text:     #5b21b6;
+  /* Primary */
+  --color-primary: #7c3aed;
+  --color-primary-hover: #6d28d9;
+  --color-primary-subtle: #f3f0ff;
+  --color-primary-text: #5b21b6;
 
-  /* Surface — overridden per theme */
-  --color-surface:          #0f172a;
-  --color-surface-raised:   #1e293b;
-  --color-surface-border:   #7c3aed44;
+  /* Badge subtle backgrounds — opacity-based so they work on any surface */
+  /* Formula: the semantic hue at full saturation, alpha replaces the -50 swatch */
+  --color-success-subtle-bg: rgb(16 185 129 / 0.12);
+  --color-danger-subtle-bg: rgb(244 63 94 / 0.12);
+  --color-warning-subtle-bg: rgb(245 158 11 / 0.12);
+  --color-info-subtle-bg: rgb(56 189 248 / 0.12);
+  --color-neutral-subtle-bg: rgb(100 116 139 / 0.12);
+  --color-primary-subtle-bg: rgb(124 58 237 / 0.12);
+
+  /* Badge subtle text — on-surface variants for dark surfaces */
+  --color-success-subtle-text: var(--color-success-on-surface, #6ee7b7);
+  --color-danger-subtle-text: var(--color-danger-on-surface, #fca5a5);
+  --color-warning-subtle-text: var(--color-warning-on-surface, #fcd34d);
+  --color-info-subtle-text: var(--color-info-on-surface, #7dd3fc);
+  --color-neutral-subtle-text: var(--color-on-surface-muted, #94a3b8);
+  --color-primary-subtle-text: var(--color-primary, #7c3aed);
+
+  /* Surface */
+  --color-surface: #0f172a;
+  --color-surface-raised: #1e293b;
+  --color-surface-border: #7c3aed44;
 
   /* Text on surface */
-  --color-on-surface:       #f8fafc;
+  --color-on-surface: #f8fafc;
   --color-on-surface-muted: #94a3b8;
 
-  /* On-surface semantic colours — overridden per theme */
+  /* On-surface semantic */
   --color-success-on-surface: #6ee7b7;
-  --color-danger-on-surface:  #fca5a5;
+  --color-danger-on-surface: #fca5a5;
   --color-warning-on-surface: #fcd34d;
-  --color-info-on-surface:    #7dd3fc;
+  --color-info-on-surface: #7dd3fc;
 
-  /* Page background — overridden per theme */
-  --color-bg-page:          #f8fafc;
-  --color-bg-subtle:        #f1f5f9;
+  /* Page */
+  --color-bg-page: #f8fafc;
+  --color-bg-subtle: #f1f5f9;
 
   /* Borders */
-  --color-border:           #e2e8f0;
-  --color-border-strong:    #cbd5e1;
-  --color-border-focus:     #7c3aed;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-border-focus: #7c3aed;
 
   /* Text hierarchy */
-  --color-text-primary:     #0f172a;
-  --color-text-secondary:   #475569;
-  --color-text-tertiary:    #94a3b8;
-  --color-text-inverse:     #ffffff;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #94a3b8;
+  --color-text-inverse: #ffffff;
 
-  /* Z-index scale */
+  /* Z-index */
   --z-dropdown: 100;
-  --z-overlay:  300;
-  --z-modal:    400;
-  --z-toast:    500;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
 }
 
 /* ── Skeleton shimmer ── */
 @keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position:  200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .skeleton-shimmer {
   background: linear-gradient(
     90deg,
     var(--color-surface-raised) 30%,
-    var(--color-neutral-700)    50%,
+    var(--color-neutral-700) 50%,
     var(--color-surface-raised) 70%
   );
   background-size: 300% 100%;
@@ -126,7 +176,11 @@
 }
 
 /* ── Base resets ── */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 body {
   font-family: Inter, system-ui, sans-serif;
@@ -142,4 +196,6 @@ body {
   outline: 2px solid var(--color-border-focus);
   outline-offset: 2px;
 }
-:focus:not(:focus-visible) { outline: none; }
+:focus:not(:focus-visible) {
+  outline: none;
+}

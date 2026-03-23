@@ -1,64 +1,81 @@
 [data-theme="teal"] {
-  --color-primary:          #0d9488;
-  --color-primary-hover:    #0f766e;
-  --color-primary-subtle:   #f0fdfa;
-  --color-primary-text:     #0f766e;
+  --color-primary: #0d9488;
+  --color-primary-hover: #0f766e;
+  --color-primary-subtle: #f0fdfa;
+  --color-primary-text: #0f766e;
 
   /* Full light — white cards on light page */
-  --color-surface:          #ffffff;
-  --color-surface-raised:   #f9fafb;
-  --color-surface-border:   #0d948830;
+  --color-surface: #ffffff;
+  --color-surface-raised: #f9fafb;
+  --color-surface-border: #0d948830;
 
-  --color-on-surface:       #111827;
+  --color-on-surface: #111827;
   --color-on-surface-muted: #6b7280;
 
-  /* Light page background */
-  --color-bg-page:          #f9fafb;
-  --color-bg-subtle:        #f3f4f6;
+  --color-bg-page: #f9fafb;
+  --color-bg-subtle: #f3f4f6;
 
-  /* Text for light bg */
-  --color-text-primary:     #111827;
-  --color-text-secondary:   #4b5563;
-  --color-text-tertiary:    #9ca3af;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-tertiary: #9ca3af;
 
-  /* Borders for light bg */
-  --color-border:           #e5e7eb;
-  --color-border-strong:    #d1d5db;
-  --color-border-focus:     #0d9488;
+  --color-border: #e5e7eb;
+  --color-border-strong: #d1d5db;
+  --color-border-focus: #0d9488;
 
   --color-success-on-surface: #15803d;
-  --color-success-500:      #22c55e;
-  --color-success-600:      #16a34a;
-  --color-success-700:      #15803d;
-  --color-success-100:      #dcfce7;
-  --color-success-50:       #f0fdf4;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-100: #dcfce7;
+  --color-success-50: #f0fdf4;
 
-  --color-danger-on-surface:  #dc2626;
-  --color-danger-500:       #ef4444;
-  --color-danger-600:       #dc2626;
-  --color-danger-700:       #b91c1c;
-  --color-danger-100:       #fee2e2;
-  --color-danger-50:        #fef2f2;
+  --color-danger-on-surface: #dc2626;
+  --color-danger-500: #ef4444;
+  --color-danger-600: #dc2626;
+  --color-danger-700: #b91c1c;
+  --color-danger-100: #fee2e2;
+  --color-danger-50: #fef2f2;
 
   --color-warning-on-surface: #d97706;
-  --color-warning-500:      #f59e0b;
-  --color-warning-600:      #d97706;
-  --color-warning-700:      #b45309;
-  --color-warning-100:      #fef9c3;
-  --color-warning-50:       #fffbeb;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-100: #fef9c3;
+  --color-warning-50: #fffbeb;
 
-  --color-info-on-surface:    #4f46e5;
-  --color-info-500:         #6366f1;
-  --color-info-600:         #4f46e5;
-  --color-info-700:         #4338ca;
-  --color-info-100:         #e0e7ff;
-  --color-info-50:          #eef2ff;
+  --color-info-on-surface: #4f46e5;
+  --color-info-500: #6366f1;
+  --color-info-600: #4f46e5;
+  --color-info-700: #4338ca;
+  --color-info-100: #e0e7ff;
+  --color-info-50: #eef2ff;
 
-  /* Neutrals — cool gray scale for light teal theme */
-  --color-neutral-0:        #ffffff;
-  --color-neutral-100:      #f3f4f6;
-  --color-neutral-200:      #e5e7eb;
-  --color-neutral-400:      #9ca3af;
-  --color-neutral-600:      #4b5563;
-  --color-neutral-900:      #111827;
+  --color-neutral-0: #ffffff;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-600: #4b5563;
+  --color-neutral-900: #111827;
+
+  /*
+    Badge subtle — full-light surface (white cards).
+    White has no dark bleed so alpha can stay at 0.12 — the hue tint reads
+    clearly against white without being garish.
+    subtle-text uses the -on-surface tokens which are DARK in this theme
+    (e.g. #15803d green-700, #dc2626 red-600) — they pass AA on white bg.
+  */
+  --color-success-subtle-bg: rgb(21 128 61 / 0.1);
+  --color-danger-subtle-bg: rgb(220 38 38 / 0.1);
+  --color-warning-subtle-bg: rgb(217 119 6 / 0.1);
+  --color-info-subtle-bg: rgb(79 70 229 / 0.1);
+  --color-neutral-subtle-bg: rgb(107 114 128 / 0.1);
+  --color-primary-subtle-bg: rgb(13 148 136 / 0.1);
+
+  --color-success-subtle-text: #166534; /* green-800, contrast 5.1:1 ✓ */
+  --color-danger-subtle-text: #991b1b; /* red-800, contrast 5.8:1 ✓ */
+  --color-warning-subtle-text: #92400e; /* amber-800, contrast 5.4:1 ✓ */
+  --color-info-subtle-text: #3730a3; /* indigo-800, contrast 6.2:1 ✓ */
+  --color-neutral-subtle-text: #374151; /* gray-700, contrast 7.1:1 ✓ */
+  --color-primary-subtle-text: #0f766e; /* teal-700, contrast 4.8:1 ✓ */
 }

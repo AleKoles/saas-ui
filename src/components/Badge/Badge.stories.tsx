@@ -1,10 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Badge } from "./Badge";
 
+// ─── Surface decorator ────────────────────────────────────────────────────────
+// Wraps every story in the current theme's card surface colour so subtle badges
+// are previewed on the same background they'll actually appear on in production.
+// var(--color-surface) resolves automatically when you switch themes in the toolbar.
+
+const withSurface = (Story: () => React.ReactNode) => (
+  <div
+    style={{ background: "var(--color-surface)" }}
+    className="p-6 rounded-(--radius-lg) inline-block"
+  >
+    <Story />
+  </div>
+);
+
 const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
   component: Badge,
   tags: ["autodocs"],
+  decorators: [withSurface],
   parameters: {
     docs: {
       description: {
@@ -32,11 +47,10 @@ const meta: Meta<typeof Badge> = {
     label: {
       control: "text",
     },
-    className: { 
-      table: { disable: true } 
+    className: {
+      table: { disable: true },
     },
   },
-  // Default args apply to the main interactive story
   args: {
     label: "Active",
     color: "success",
@@ -50,30 +64,29 @@ export default meta;
 type Story = StoryObj<typeof Badge>;
 
 // ─── Single interactive story ─────────────────────────────────────────────────
-// Use the Controls panel to change any prop live
 
 export const Playground: Story = {};
 
-// ─── Reference rows (shown in Docs tab only) ──────────────────────────────────
+// ─── Reference rows ───────────────────────────────────────────────────────────
 
 export const AllColours: Story = {
   render: () => (
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap gap-2">
-        <Badge label="Active"  color="success" variant="subtle" dot />
-        <Badge label="Review"  color="info"    variant="subtle" dot />
+        <Badge label="Active" color="success" variant="subtle" dot />
+        <Badge label="Review" color="info" variant="subtle" dot />
         <Badge label="Pending" color="warning" variant="subtle" dot />
-        <Badge label="Failed"  color="danger"  variant="subtle" dot />
-        <Badge label="Draft"   color="neutral" variant="subtle" dot />
-        <Badge label="New"     color="primary" variant="subtle" dot />
+        <Badge label="Failed" color="danger" variant="subtle" dot />
+        <Badge label="Draft" color="neutral" variant="subtle" dot />
+        <Badge label="New" color="primary" variant="subtle" dot />
       </div>
       <div className="flex flex-wrap gap-2">
-        <Badge label="Active"  color="success" variant="solid" dot />
-        <Badge label="Review"  color="info"    variant="solid" dot />
+        <Badge label="Active" color="success" variant="solid" dot />
+        <Badge label="Review" color="info" variant="solid" dot />
         <Badge label="Pending" color="warning" variant="solid" dot />
-        <Badge label="Failed"  color="danger"  variant="solid" dot />
-        <Badge label="Draft"   color="neutral" variant="solid" dot />
-        <Badge label="New"     color="primary" variant="solid" dot />
+        <Badge label="Failed" color="danger" variant="solid" dot />
+        <Badge label="Draft" color="neutral" variant="solid" dot />
+        <Badge label="New" color="primary" variant="solid" dot />
       </div>
     </div>
   ),
@@ -82,9 +95,9 @@ export const AllColours: Story = {
 export const Sizes: Story = {
   render: () => (
     <div className="flex items-center gap-3">
-      <Badge label="Small"  color="success" variant="solid" size="sm" dot />
+      <Badge label="Small" color="success" variant="solid" size="sm" dot />
       <Badge label="Medium" color="success" variant="solid" size="md" dot />
-      <Badge label="Large"  color="success" variant="solid" size="lg" dot />
+      <Badge label="Large" color="success" variant="solid" size="lg" dot />
     </div>
   ),
 };
