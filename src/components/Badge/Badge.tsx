@@ -103,7 +103,7 @@ export function Badge({
       aria-label={ariaLabel}
       className={[
         "inline-flex items-center font-medium leading-none",
-        "rounded-(--radius-full)",
+        "rounded-(--radius-badge)",
         s.badge,
         variant === "subtle" ? c.subtle : c.solid,
         className,
@@ -114,7 +114,7 @@ export function Badge({
         <span
           aria-hidden="true"
           className={[
-            "rounded-(--radius-full) shrink-0",
+            "rounded-(--radius-badge) shrink-0",
             s.dot,
             variant === "solid" ? "bg-white/70" : c.dot,
           ].join(" ")}

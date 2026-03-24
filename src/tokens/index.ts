@@ -11,8 +11,8 @@
 
 export const colors = {
   neutral: {
-    0: "#ffffff",
-    50: "#f8fafc",
+    0:   "#ffffff",
+    50:  "#f8fafc",
     100: "#f1f5f9",
     200: "#e2e8f0",
     300: "#cbd5e1",
@@ -30,45 +30,51 @@ export const colors = {
 // Base unit: 4px.
 // Token name → CSS var           → Tailwind utility
 // spacing[1] → var(--spacing-1)  → p-1, gap-1, m-1 …
-// spacing[2] → var(--spacing-2)  → p-2, gap-2 …
-// Figma: "Spacing / {key}" variables in each theme collection
+// Figma: "Spacing / {key}" variables in Global collection
 
 export const spacing = {
-  0: "0px",
-  0.5: "2px",
-  1: "4px",
-  1.5: "6px",
-  2: "8px",
-  2.5: "10px",
-  3: "12px",
-  3.5: "14px",
-  4: "16px",
-  5: "20px",
-  6: "24px",
-  8: "32px",
-  10: "40px",
-  12: "48px",
-  16: "64px",
-  20: "80px",
-  24: "96px",
+  0:    "0px",
+  0.5:  "2px",
+  1:    "4px",
+  1.5:  "6px",
+  2:    "8px",
+  2.5:  "10px",
+  3:    "12px",
+  3.5:  "14px",
+  4:    "16px",
+  5:    "20px",
+  6:    "24px",
+  8:    "32px",
+  10:   "40px",
+  12:   "48px",
+  16:   "64px",
+  20:   "80px",
+  24:   "96px",
 } as const;
 
 // ─── Border radius ────────────────────────────────────────────────────────────
-// Token name → CSS var             → Tailwind utility
-// radius.sm  → var(--radius-sm)   → rounded-(--radius-sm)
-// radius.md  → var(--radius-md)   → rounded-(--radius-md)   ← default components
-// radius.lg  → var(--radius-lg)   → rounded-(--radius-lg)   ← cards, panels
-// radius.xl  → var(--radius-xl)   → rounded-(--radius-xl)   ← modals
-// radius.full→ var(--radius-full) → rounded-(--radius-full) ← badges, pills
-// Figma: "Radius / {key}" variables in each theme collection
+// Primitive scale — do not use directly in components.
+// Use semanticRadius below instead.
 
 export const radius = {
   none: "0px",
-  sm: "4px",
-  md: "8px",
-  lg: "12px",
-  xl: "16px",
+  sm:   "4px",
+  md:   "8px",
+  lg:   "12px",
+  xl:   "16px",
   full: "9999px",
+} as const;
+
+// ─── Semantic radius ──────────────────────────────────────────────────────────
+// Use these in components — never raw radius values.
+// Change once here → all components update.
+// Figma: "Radius/Semantic/{key}" in Global collection
+
+export const semanticRadius = {
+  badge:   radius.full,  // 9999px — pills, tags
+  button:  radius.md,    // 8px    — buttons, inputs
+  card:    radius.xl,    // 16px   — stat cards, modals
+  surface: radius.lg,    // 12px   — panels, tables, dropdowns
 } as const;
 
 // ─── Typography ───────────────────────────────────────────────────────────────
@@ -79,21 +85,21 @@ export const fontFamily = {
 } as const;
 
 export const fontSize = {
-  xs: ["11px", { lineHeight: "16px" }],
-  sm: ["12px", { lineHeight: "16px" }],
-  base: ["14px", { lineHeight: "20px" }],
-  md: ["16px", { lineHeight: "24px" }],
-  lg: ["18px", { lineHeight: "28px" }],
-  xl: ["20px", { lineHeight: "28px" }],
+  xs:    ["11px", { lineHeight: "16px" }],
+  sm:    ["12px", { lineHeight: "16px" }],
+  base:  ["14px", { lineHeight: "20px" }],
+  md:    ["16px", { lineHeight: "24px" }],
+  lg:    ["18px", { lineHeight: "28px" }],
+  xl:    ["20px", { lineHeight: "28px" }],
   "2xl": ["24px", { lineHeight: "32px" }],
   "3xl": ["30px", { lineHeight: "36px" }],
 } as const;
 
 export const fontWeight = {
-  normal: "400",
-  medium: "500",
+  normal:   "400",
+  medium:   "500",
   semibold: "600",
-  bold: "700",
+  bold:     "700",
 } as const;
 
 // ─── Shadows ─────────────────────────────────────────────────────────────────
@@ -116,30 +122,30 @@ export const transition = {
 // ─── Z-index ─────────────────────────────────────────────────────────────────
 
 export const zIndex = {
-  base: 0,
-  raised: 10,
+  base:     0,
+  raised:   10,
   dropdown: 100,
-  sticky: 200,
-  overlay: 300,
-  modal: 400,
-  toast: 500,
+  sticky:   200,
+  overlay:  300,
+  modal:    400,
+  toast:    500,
 } as const;
 
 // ─── Semantic aliases ─────────────────────────────────────────────────────────
 // Neutral-derived only. Primary / state colours → use CSS vars directly.
 
 export const semantic = {
-  textPrimary: colors.neutral[900],
+  textPrimary:   colors.neutral[900],
   textSecondary: colors.neutral[600],
-  textTertiary: colors.neutral[400],
-  textInverse: colors.neutral[0],
+  textTertiary:  colors.neutral[400],
+  textInverse:   colors.neutral[0],
 
-  bgPage: colors.neutral[50],
+  bgPage:    colors.neutral[50],
   bgSurface: colors.neutral[0],
-  bgSubtle: colors.neutral[100],
+  bgSubtle:  colors.neutral[100],
 
   borderDefault: colors.neutral[200],
-  borderStrong: colors.neutral[300],
+  borderStrong:  colors.neutral[300],
 } as const;
 
 // ─── Master export ────────────────────────────────────────────────────────────
@@ -148,6 +154,7 @@ export const tokens = {
   colors,
   spacing,
   radius,
+  semanticRadius,
   fontFamily,
   fontSize,
   fontWeight,

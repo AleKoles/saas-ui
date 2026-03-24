@@ -50,6 +50,13 @@
   --radius-xl: 16px;
   --radius-full: 9999px;
 
+  /* ── Semantic radius ── */
+  --radius-badge:   var(--radius-full);
+  --radius-button:  var(--radius-md);
+  --radius-card:    var(--radius-xl);
+  --radius-surface: var(--radius-lg);
+
+
   /* ── Spacing — mirrors tokens/index.ts spacing map ── */
   /* Components use var(--spacing-{n}) or Tailwind's p-{n} / gap-{n} / m-{n} */
   --spacing-0\.5: 2px;

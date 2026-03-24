@@ -30,7 +30,7 @@ function SkeletonBar({
     <div
       aria-hidden="true"
       style={{ width, height }}
-      className="rounded-(--radius-sm) skeleton-shimmer"
+      className="rounded-(--radius-button) skeleton-shimmer"
     />
   );
 }
@@ -77,7 +77,7 @@ export function StatCard({
         // gap-3 → var(--spacing-3) = 12px
         "p-5 flex flex-col gap-3",
         // Radius token
-        "rounded-(--radius-xl)",
+        "rounded-(--radius-card)",
         // Colour tokens
         "bg-(--color-surface) border border-(--color-surface-border)",
         className,
