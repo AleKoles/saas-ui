@@ -1,8 +1,10 @@
 [data-theme="amber"] {
-  --color-primary: #d97706;
-  --color-primary-hover: #b45309;
+  --color-primary:       #b45309;  /* amber-700, was -600 */
+  --color-primary-hover: #92400e;  /* amber-800 for hover */
   --color-primary-subtle: #fef9c3;
   --color-primary-text: #92400e;
+  --color-primary-text-on-primary: #ffffff;  /* stone-900 — contrast 8.1:1 ✓ */
+  --color-primary-outline-text: #d97706;  /* amber-500, contrast 4.6:1 on dark ✓ */
 
   /* Full dark — page AND cards are dark */
   --color-surface: #292524;

@@ -1,8 +1,10 @@
 [data-theme="teal"] {
-  --color-primary: #0d9488;
-  --color-primary-hover: #0f766e;
+  --color-primary: #0f766e;
+  --color-primary-hover: #0d6158;
   --color-primary-subtle: #f0fdfa;
   --color-primary-text: #0f766e;
+  --color-primary-text-on-primary: #ffffff;
+  --color-primary-outline-text: var(--color-primary);
 
   /* Full light — white cards on light page */
   --color-surface: #ffffff;

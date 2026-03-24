@@ -3,6 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "Accessible component library for SaaS dashboards — React, TypeScript, Tailwind CSS v4",
+  "keywords": ["react", "components", "ui", "tailwind", "storybook", "saas", "dashboard", "accessibility", "wcag"],
+  "license": "MIT",
+  "storybook": {
+    "url": "https://saas-ui-delta.vercel.app"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -14,6 +20,7 @@
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
     "@tailwindcss/vite": "^4.2.1",
+    "lucide-react": "^1.6.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwindcss": "^4.2.1"
