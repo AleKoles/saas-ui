@@ -65,8 +65,10 @@ import "@alekoles/saas-ui/themes/teal.css";
 | Component       | Status     | a11y    |
 | --------------- | ---------- | ------- |
 | Badge           | ✅ Done    | WCAG AA |
+| Button          | ✅ Done    | WCAG AA |
 | StatCard        | ✅ Done    | WCAG AA |
 | DataTable       | ✅ Done    | WCAG AA |
+| DataGrid        | 🚧 WIP     | WCAG AA |
 | Modal           | ⬜ Planned | —       |
 | Toast           | ⬜ Planned | —       |
 | Skeleton        | ⬜ Planned | —       |
