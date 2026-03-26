@@ -136,6 +136,16 @@ export const States: Story = {
 
 export const CommerceIcons: Story = {
   name: "Commerce & Business",
+  decorators: [
+    (Story) => (
+      <div
+        style={{ background: "var(--color-surface)" }}
+        className="p-6 rounded-(--radius-lg) inline-block"
+      >
+        <Story />
+      </div>
+    ),
+  ],
   render: () => (
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap gap-2 items-center">

@@ -68,6 +68,10 @@
     The subtle-bg is semi-transparent so it sits naturally on --color-surface.
     The subtle-text points to the on-surface tokens so it's always legible.
   */
+
+  --skeleton-base:      var(--color-surface-raised);
+  --skeleton-highlight: var(--color-neutral-700);
+
   --color-success-subtle-bg: rgb(16 185 129 / 0.15);
   --color-danger-subtle-bg: rgb(244 63 94 / 0.15);
   --color-warning-subtle-bg: rgb(245 158 11 / 0.15);
@@ -82,3 +86,4 @@
   --color-neutral-subtle-text: #94a3b8; /* slate-400, contrast 4.6:1 on dark ✓ */
   --color-primary-subtle-text: #a78bfa; /* violet-400, contrast 5.2:1 on dark ✓ */
 }
+

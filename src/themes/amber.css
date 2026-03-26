@@ -67,6 +67,10 @@
     Alpha 0.15 same as Violet: dark surface bleeds through, tint stays readable.
     subtle-text → on-surface tokens which are bright/light in this theme.
   */
+
+  --skeleton-base:      var(--color-surface-raised);
+  --skeleton-highlight: var(--color-neutral-700);
+
   --color-success-subtle-bg: rgb(132 204 22 / 0.15); /* lime-500 */
   --color-danger-subtle-bg: rgb(239 68 68 / 0.15); /* red-500  */
   --color-warning-subtle-bg: rgb(251 146 60 / 0.15); /* orange-400 */

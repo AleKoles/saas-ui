@@ -60,6 +60,8 @@
   --color-neutral-600: #4b5563;
   --color-neutral-900: #111827;
 
+  --skeleton-base:      #eef1f5;
+  --skeleton-highlight: #fafbfc;
   /*
     Badge subtle — full-light surface (white cards).
     White has no dark bleed so alpha can stay at 0.12 — the hue tint reads

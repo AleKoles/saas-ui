@@ -173,9 +173,9 @@
 .skeleton-shimmer {
   background: linear-gradient(
     90deg,
-    var(--color-surface-raised) 30%,
-    var(--color-neutral-700) 50%,
-    var(--color-surface-raised) 70%
+    var(--skeleton-base,      var(--color-surface-raised)) 30%,
+    var(--skeleton-highlight, var(--color-neutral-700))    50%,
+    var(--skeleton-base,      var(--color-surface-raised)) 70%
   );
   background-size: 300% 100%;
   animation: shimmer 2.5s ease-in-out infinite;
@@ -184,7 +184,7 @@
 @media (prefers-reduced-motion: reduce) {
   .skeleton-shimmer {
     animation: none;
-    background: var(--color-neutral-600);
+    background: var(--skeleton-base, var(--color-surface-raised));
   }
 }
 
