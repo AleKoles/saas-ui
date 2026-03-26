@@ -195,12 +195,6 @@ function EditableTruncatedCell({ value, onCommit }: { value: string; onCommit: (
         {displayValue}
       </span>
       <div style={{ display: "flex", flexDirection: "column", gap: 2, flexShrink: 0 }}>
-      <button onClick={openEdit}
-          title="Edit note"
-          aria-label="Edit note"
-          style={{ background: "none", border: "none", padding: 2, cursor: "pointer", color: "var(--color-on-surface-muted)", borderRadius: "var(--radius-button)", display: "flex" }}>
-          <Pencil size={12} aria-hidden />
-        </button>
         {needsTruncation && (
           <button onClick={() => setExpanded(e => !e)}
             title={expanded ? "Collapse" : "Read more"}
@@ -209,6 +203,12 @@ function EditableTruncatedCell({ value, onCommit }: { value: string; onCommit: (
             {expanded ? <ChevronUp size={12} aria-hidden /> : <ChevronDown size={12} aria-hidden />}
           </button>
         )}
+        <button onClick={openEdit}
+          title="Edit note"
+          aria-label="Edit note"
+          style={{ background: "none", border: "none", padding: 2, cursor: "pointer", color: "var(--color-on-surface-muted)", borderRadius: "var(--radius-button)", display: "flex" }}>
+          <Pencil size={12} aria-hidden />
+        </button>
       </div>
     </div>
   );
@@ -361,7 +361,16 @@ export function DataTable<T extends Record<string, unknown>>({
         {tabs && tabs.length > 0 && (
           <div className="flex items-center gap-1 mr-2">
             {tabs.map((t, i) => (
-              <Button key={i} size="sm" variant={activeTab === i ? "solid" : "outline"} onClick={() => { setActiveTab(i); setPage(1); }}>
+              <Button
+                key={i}
+                size="sm"
+                variant={activeTab === i ? "solid" : "outline"}
+                onClick={() => { setActiveTab(i); setPage(1); }}
+                style={activeTab !== i ? {
+                  color: "var(--color-on-surface-muted)",
+                  borderColor: "var(--color-surface-border)",
+                } : undefined}
+              >
                 {t.label}
               </Button>
             ))}
@@ -384,13 +393,15 @@ export function DataTable<T extends Record<string, unknown>>({
             />
           </div>
         )}
-        <Button size="sm" variant={filterOpen ? "solid" : "outline"} onClick={() => setFilterOpen((o: boolean) => !o)} aria-pressed={filterOpen} title="Filter">
+        <Button size="sm" variant={filterOpen ? "solid" : "outline"} onClick={() => setFilterOpen((o: boolean) => !o)} aria-pressed={filterOpen} title="Filter"
+          style={!filterOpen ? { color: "var(--color-on-surface-muted)", borderColor: "var(--color-surface-border)" } : undefined}>
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M2 4h12M4 8h8M6 12h4" strokeLinecap="round"/>
           </svg>
         </Button>
         {sortKey && (
-          <Button size="sm" variant="outline" onClick={() => { setSortKey(null); setSortDir("none"); }} title="Clear sort">
+          <Button size="sm" variant="outline" onClick={() => { setSortKey(null); setSortDir("none"); }} title="Clear sort"
+            style={{ color: "var(--color-on-surface-muted)", borderColor: "var(--color-surface-border)" }}>
             {String(sortKey)} {sortDir === "asc" ? "↑" : "↓"} ✕
           </Button>
         )}
@@ -434,11 +445,11 @@ export function DataTable<T extends Record<string, unknown>>({
                     >
                       {col.sortable ? (
                         <button onClick={() => handleSort(col.key)} className="inline-flex items-center"
-                          style={{ background: "none", border: "none", padding: 0, cursor: "pointer", fontSize: 11, whiteSpace: "nowrap", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--color-on-surface-muted)" }}>
+                          style={{ background: "none", border: "none", padding: 0, cursor: "pointer", fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--color-on-surface-muted)" }}>
                           {col.label}<SortIcon dir={dir} active={sortKey === col.key} />
                         </button>
                       ) : (
-                        <span style={{ fontSize: 11, fontWeight: 500, textTransform: "uppercase", whiteSpace: "nowrap", letterSpacing: "0.05em", color: "var(--color-on-surface-muted)" }}>
+                        <span style={{ fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--color-on-surface-muted)" }}>
                           {col.label}
                         </span>
                       )}
@@ -456,26 +467,19 @@ export function DataTable<T extends Record<string, unknown>>({
               {isLoading && Array.from({ length: skeletonRows }).map((_, i) => (
                 <SkeletonRow key={i} colCount={columns.length} draggable={draggable} selectable={selectable} />
               ))}
-                  {isEmpty && !isLoading && (
-                    <tr>
-                      <td
-                        colSpan={totalCols}
-                        style={{
-                          position: "sticky",
-                          left: 0,
-                          padding: "64px 16px",
-                          textAlign: "center",
-                          background: surfaceBg,
-                        }}
-                      >
-                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-                          <Inbox aria-hidden size={32} strokeWidth={1.25} style={{ color: "var(--color-on-surface-muted)", opacity: 0.4 }} />
-                          <span className="text-sm font-medium text-(--color-on-surface)">{emptyMessage}</span>
-                          <span className="text-xs text-(--color-on-surface-muted)">{emptySubMessage}</span>
-                        </div>
-                      </td>
-                    </tr>
-                  )}
+
+              {isEmpty && !isLoading && (
+                <tr>
+                  <td colSpan={totalCols} className="px-4 py-16 text-center">
+                    <div className="flex flex-col items-center gap-2">
+                      <Inbox aria-hidden size={32} strokeWidth={1.25} style={{ color: "var(--color-on-surface-muted)", opacity: 0.4 }} />
+                      <span className="text-sm font-medium text-(--color-on-surface)">{emptyMessage}</span>
+                      <span className="text-xs text-(--color-on-surface-muted)">{emptySubMessage}</span>
+                    </div>
+                  </td>
+                </tr>
+              )}
+
               {!isLoading && !isEmpty && paged.map((row, rowIdx) => {
                 const absIdx     = (safePage - 1) * pageSize + rowIdx;
                 const isSelected = selectable && selected.has(absIdx);
@@ -547,9 +551,11 @@ export function DataTable<T extends Record<string, unknown>>({
             {selectable && selected.size > 0 ? `${selected.size} selected` : `${sorted.length} ${sorted.length === 1 ? "result" : "results"}`}
           </span>
           <div className="flex items-center gap-1">
-            <Button size="sm" variant="outline" onClick={() => setPage(p => Math.max(1, p - 1))} disabled={safePage === 1} aria-label="Previous page">‹</Button>
+            <Button size="sm" variant="outline" onClick={() => setPage(p => Math.max(1, p - 1))} disabled={safePage === 1} aria-label="Previous page"
+              style={{ color: "var(--color-on-surface-muted)", borderColor: "var(--color-surface-border)" }}>‹</Button>
             <span className="text-xs text-(--color-on-surface-muted) px-2">{safePage} / {totalPages}</span>
-            <Button size="sm" variant="outline" onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={safePage === totalPages} aria-label="Next page">›</Button>
+            <Button size="sm" variant="outline" onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={safePage === totalPages} aria-label="Next page"
+              style={{ color: "var(--color-on-surface-muted)", borderColor: "var(--color-surface-border)" }}>›</Button>
           </div>
           <div className="flex items-center gap-2">
             <label htmlFor={`${uid}-pagesize`} className="text-xs text-(--color-on-surface-muted)">Rows</label>
@@ -565,8 +571,8 @@ export function DataTable<T extends Record<string, unknown>>({
   );
 }
 
-  // ─── StatusBadge helper ───────────────────────────────────────────────────────
-  
-  export function StatusBadge({ label, color }: { label: string; color: BadgeColor }) {
-    return <Badge label={label} color={color} variant="subtle" size="sm" dot />;
-  }
+// ─── StatusBadge helper ───────────────────────────────────────────────────────
+
+export function StatusBadge({ label, color }: { label: string; color: BadgeColor }) {
+  return <Badge label={label} color={color} variant="subtle" size="sm" dot />;
+}

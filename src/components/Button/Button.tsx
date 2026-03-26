@@ -43,9 +43,9 @@ const variantStyles: Record<ButtonVariant, string> = {
   ].join(" "),
 
   ghost: [
-    "bg-transparent text-(--color-on-surface-muted)",
+    "bg-transparent text-(--color-text-secondary)",
     "border border-transparent",
-    "hover:bg-(--color-primary-subtle) hover:text-(--color-on-surface)",
+    "hover:bg-(--color-bg-subtle) hover:text-(--color-text-primary)",
     "disabled:text-(--color-neutral-400)",
   ].join(" "),
 };

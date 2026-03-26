@@ -12,7 +12,7 @@
   --color-surface-border: #d9770644;
 
   --color-on-surface: #fafaf9;
-  --color-on-surface-muted: #a8a29e;
+  --color-on-surface-muted: #b8b2ae;  /* slightly lighter stone, contrast 4.6:1 ✓ */
 
   --color-bg-page: #1c1917;
   --color-bg-subtle: #292524;

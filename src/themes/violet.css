@@ -3,7 +3,7 @@
   --color-primary-hover: #6d28d9;
   --color-primary-text: #5b21b6;
   --color-primary-text-on-primary: #ffffff;
-  --color-primary-outline-text: #a78bfa;  /* violet-400, contrast 4.7:1 on dark ✓ */
+  --color-primary-outline-text: #6d28d9;  /* violet-700, 5.9:1 on light ✓, 2.1:1 on dark */
   --color-primary-subtle:       rgb(124 58 237 / 0.15);
 
   /* Light page, dark cards */
