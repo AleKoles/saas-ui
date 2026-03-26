@@ -61,7 +61,7 @@ function pad(n: number) { return String(n).padStart(8, "0"); }
 function dateStr(daysAgo: number) {
   const d = new Date();
   d.setDate(d.getDate() - daysAgo);
-  return d.toLocaleDateString("en-US", { month: "numeric", day: "numeric", year: "numeric" });
+  return d.toLocaleDateString("de-DE", { month: "numeric", day: "numeric", year: "numeric" });
 }
 function pick<T>(arr: readonly T[], i: number) { return arr[i % arr.length]; }
 
@@ -223,13 +223,9 @@ export const Playground: Story = {
       control: "radio",
       options: ["populated", "loading", "empty"],
     },
-    draggable: {
-      control: "boolean",
-    },
-    skeletonRows: {
-      control: { type: "number", min: 1, max: 20 },
-    },
-    // hide props that need object editors
+    draggable:    { control: "boolean" },
+    selectable:   { control: "boolean" },
+    skeletonRows: { control: { type: "number", min: 1, max: 20 } },
     columns:       { table: { disable: true } },
     data:          { table: { disable: true } },
     tabs:          { table: { disable: true } },

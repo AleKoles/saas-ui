@@ -1,10 +1,10 @@
 [data-theme="violet"] {
   --color-primary: #7c3aed;
   --color-primary-hover: #6d28d9;
-  --color-primary-subtle: #f3f0ff;
   --color-primary-text: #5b21b6;
   --color-primary-text-on-primary: #ffffff;
-  --color-primary-outline-text: var(--color-primary);
+  --color-primary-outline-text: #a78bfa;  /* violet-400, contrast 4.7:1 on dark ✓ */
+  --color-primary-subtle:       rgb(124 58 237 / 0.15);
 
   /* Light page, dark cards */
   --color-surface: #0f172a;
